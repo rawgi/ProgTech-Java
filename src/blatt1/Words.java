@@ -11,38 +11,16 @@ public class Words implements Iterable<String>{
 	public Words(String s){
 		string = s;
 	}
-	
-	@Override
-	public void forEach(Consumer<? super String> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Iterator<String> iterator() {
-		return new WordIterator(string);
-	}
-
-	@Override
-	public Spliterator<String> spliterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new WordIterator();
 	}
 	
-	private class WordIterator<String> implements Iterator<String>{
+	private class WordIterator implements Iterator<String>{
 		
-		String words;
+		String words = string;
 		
-		WordIterator(String s){
-			words = s;
-		}
-		
-		@Override
-		public void forEachRemaining(Consumer<? super String> arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
 		@Override
 		public boolean hasNext() {
 			return words.length() > 0;
@@ -51,17 +29,20 @@ public class Words implements Iterable<String>{
 		@Override
 		public String next() {
 			String word = "";
-			String character;
+			char character = ' ';
+			int index = 0;
 			while(hasNext()){
-				
+				character = words.charAt(index);
+				words = words.substring(1, words.length());
+				if(character == ' '){
+					index = 0;
+					return word;
+				}
+				word = word+character;
 			}
-			
+			index = 0;
 			return word;
 		}
-		
-		@Override
-		public void remove(){
-			
-		}
+
 	}
 }

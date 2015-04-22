@@ -2,6 +2,7 @@ import java.util.Iterator;
 
 import blatt1.Countdown;
 import blatt1.Squares;
+import blatt1.Words;
 
 public class test {
 	
@@ -18,5 +19,10 @@ public class test {
 			System.out.println(squareIterator.next());
 		}
 		
+		Words words = new Words("la le lu und schon zu");
+		Iterator<String> wordsIt = words.iterator();
+		while(wordsIt.hasNext()){
+			System.out.println(wordsIt.next());
+		}
 	}
 }
