@@ -18,7 +18,19 @@ public class TreeImpl<E> implements Tree<E> {
 		this.element = element;
 		this.children = children;
 	}
-
+	
+	@Override
+	public String toString(){
+		if(element == null) return "";
+		String result = element+"(";
+		for(Tree<E> t: getChildNodes()){
+			result = result+t.toString();
+		}
+		result = result+")";
+		
+		return result;
+	}
+	
 	@Override
 	public E getElement() {
 		return element;

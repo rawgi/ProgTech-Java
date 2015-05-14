@@ -180,4 +180,9 @@ public class TreeTest {
 		charlotte.forEach(c -> e++);
 		assertEquals(1,e);
 	}
+	
+	@Test
+	public void testToString(){
+		System.out.println(george);
+	}
 }

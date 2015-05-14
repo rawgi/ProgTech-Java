@@ -10,6 +10,7 @@ import blatt2.LiLi;
 public class TestLiLi {
 
 	LiLi<String> lili;
+	int e = 0;
 	
 	@Before
 	public void setUp() {
@@ -27,7 +28,8 @@ public class TestLiLi {
 		assertEquals(4,lili.indexOf("o"));
 		assertEquals("[h,a,l,l,o,!]",lili.add("!").toString());
 		assertEquals("[o,l,l,a,h]",lili.reverse().toString());
-		lili.machtAlle(c -> System.out.println(c));
+		lili.machtAlle(c -> e++);
+		assertEquals(lili.length(),e);
 		assertEquals("[H,A,L,L,O]",lili.map(x -> x.toUpperCase()).toString());
 	}
 }
