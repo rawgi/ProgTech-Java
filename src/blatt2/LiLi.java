@@ -85,7 +85,12 @@ public class LiLi<A> implements Iterable<A> {
 	}
 
 	public String toString(){
-		if(!isEmpty()) return (String)hd+getTail().toString();
+		if(!isEmpty()) return "["+hd+getTail().ausgabe()+"]";
+		return "";
+	}
+	
+	public String ausgabe(){
+		if(!isEmpty()) return ","+hd+getTail().ausgabe();
 		return "";
 	}
 	
@@ -137,8 +142,7 @@ public class LiLi<A> implements Iterable<A> {
 	}
 	
 	public LiLi<A> add(A el){
-		if(!isEmpty()) return new LiLi<A>(hd,tl.add(el));
-		return new LiLi<A>(el, new LiLi<A>(null,null));
+		return append(new LiLi<A>(el, new LiLi<A>(null,null)));
 	}
 	
 	public LiLi<A> reverse() throws Exception{
@@ -153,9 +157,28 @@ public class LiLi<A> implements Iterable<A> {
 		}
 	}
 	
-	<B> LiLi<B> map(java.util.function.Function<A,B> f){
+	public <B> LiLi<B> map(java.util.function.Function<A,B> f){
 		if(!isEmpty()) return new LiLi<B>(f.apply(hd),tl.map(f));
 		return new LiLi<B>(null,null);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		LiLi other = (LiLi) obj;
+		if (hd == null) {
+			if (other.hd != null)
+				return false;
+		} else if (!hd.equals(other.hd))
+			return false;
+		if (tl == null) {
+			if (other.tl != null)
+				return false;
+		} else if (!tl.equals(other.tl))
+			return false;
+		return true;
 	}
 	
 	
