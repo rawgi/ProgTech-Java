@@ -78,13 +78,15 @@ public class Util {
 	}
 
 	static void select(Node n, Predicate<Node> pred, List<Node> result) {
-		if(pred.test(n)) result.add(n);
-		NodeList nList = n.getChildNodes();
-		if(nList.getLength() != 0){
-			for(int i = 0; i < nList.getLength(); i++){
-				select(nList.item(i),pred,result);
-			}
-		}
+//		if(pred.test(n)) result.add(n);
+//		NodeList nList = n.getChildNodes();
+//		if(nList.getLength() != 0){
+//			for(int i = 0; i < nList.getLength(); i++){
+//				select(nList.item(i),pred,result);
+//			}
+//		}
+		
+		forEach(n, (x) -> { if(pred.test(x)) result.add(x); });
 	}
 
 	static void select(Node n, String name, List<Node> result) {
